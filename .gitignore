@@ -1,0 +1,21 @@
+# =====================================================
+# .gitignore
+# Le dice a Git qué archivos NO debe versionar, para que
+# no se suban archivos temporales, del sistema o de las
+# herramientas de edición.
+# =====================================================
+
+# --- Archivos de SQL Server (bases de datos locales) ---
+# Respaldos y archivos físicos de la base: pesan mucho y no son código.
+*.bak
+*.mdf
+*.ldf
+
+# --- Archivos de editores / IDE ---
+.vs/
+.idea/
+.vscode/
+
+# --- Archivos del sistema operativo ---
+.DS_Store
+Thumbs.db

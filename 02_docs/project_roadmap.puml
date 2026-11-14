@@ -1,0 +1,24 @@
+@startmindmap
+' ==========================================================
+' project_roadmap.puml
+' Mapa mental con las etapas del proyecto: desde el análisis
+' de requerimientos hasta la construcción de las capas
+' Bronze, Silver y Gold. Sirve como hoja de ruta del trabajo.
+' ==========================================================
+* SQL Data Warehouse Project
+** Análisis de Requerimientos
+** Diseño de la Arquitectura de Datos
+** Inicialización del Proyecto
+*** Crear detalle de tareas del proyecto
+*** Definir convención de nombres del Proyecto
+*** Crear un Repositorio de Git y preparar estructura
+*** Crear Base de Datos y Esquemas
+** Construir Capa Bronze
+*** Analizar los sistemas orígenes
+*** Codificar: Data Ingestion (Ingesta de datos)
+*** Validar: Integridad de datos y chequeos de esquemas
+*** Documentación: Dibujar flujo de datos
+*** Commit del repositorio
+** Construir Capa Silver
+** Construir Capa Gold
+@endmindmap
