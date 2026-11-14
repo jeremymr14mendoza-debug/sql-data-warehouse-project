@@ -1,0 +1,52 @@
+@startuml
+' ==========================================================
+' 02_docs/data_flow_bronze.puml
+' Diagrama del flujo de datos de la capa Bronze: muestra cómo
+' los seis archivos CSV (CRM y ERP) pasan por el procedimiento
+' bronze.load_bronze y terminan en las tablas del esquema bronze.
+' ==========================================================
+title Flujo de datos - Capa Bronze
+skinparam shadowing false
+left to right direction
+
+' Origen: archivos CSV de cada sistema
+package "CRM (CSV)" {
+  file "cust_info.csv" as c1
+  file "prd_info.csv" as c2
+  file "sales_details.csv" as c3
+}
+package "ERP (CSV)" {
+  file "CUST_AZ12.csv" as e1
+  file "LOC_A101.csv" as e2
+  file "PX_CAT_G1V2.csv" as e3
+}
+
+' Proceso: el procedimiento que carga los archivos
+rectangle "bronze.load_bronze\n(TRUNCATE + BULK INSERT)" as p
+
+' Destino: tablas del esquema bronze en la base DataWarehouse
+database "DataWarehouse" {
+  package "bronze" {
+    entity "crm_cust_info" as b1
+    entity "crm_prd_info" as b2
+    entity "crm_sales_details" as b3
+    entity "erp_cust_az12" as b4
+    entity "erp_loc_a101" as b5
+    entity "erp_px_cat_g1v2" as b6
+  }
+}
+
+' Flujo: CSV -> procedimiento -> tabla
+c1 --> p
+c2 --> p
+c3 --> p
+e1 --> p
+e2 --> p
+e3 --> p
+p --> b1
+p --> b2
+p --> b3
+p --> b4
+p --> b5
+p --> b6
+@enduml
