@@ -1,0 +1,46 @@
+@startuml
+' ==========================================================
+' 02_docs/data_flow_silver.puml
+' Diagrama del flujo de datos de la capa Silver: las tablas de
+' bronze pasan por el procedimiento silver.load_silver (limpieza
+' y transformación) y se cargan en las tablas del esquema silver.
+' ==========================================================
+title Flujo de datos - Capa Silver
+skinparam shadowing false
+left to right direction
+
+database "DataWarehouse" {
+  package "bronze" {
+    entity "crm_cust_info" as b1
+    entity "crm_prd_info" as b2
+    entity "crm_sales_details" as b3
+    entity "erp_cust_az12" as b4
+    entity "erp_loc_a101" as b5
+    entity "erp_px_cat_g1v2" as b6
+  }
+
+  rectangle "silver.load_silver\n(limpieza + INSERT...SELECT)" as p
+
+  package "silver" {
+    entity "crm_cust_info" as s1
+    entity "crm_prd_info" as s2
+    entity "crm_sales_details" as s3
+    entity "erp_cust_az12" as s4
+    entity "erp_loc_a101" as s5
+    entity "erp_px_cat_g1v2" as s6
+  }
+}
+
+b1 --> p
+b2 --> p
+b3 --> p
+b4 --> p
+b5 --> p
+b6 --> p
+p --> s1
+p --> s2
+p --> s3
+p --> s4
+p --> s5
+p --> s6
+@enduml
