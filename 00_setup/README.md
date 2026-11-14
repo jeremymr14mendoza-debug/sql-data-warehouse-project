@@ -22,9 +22,17 @@ ejecutar los scripts para dejar el almacén de datos funcionando.
 
 ```sql
 EXEC bronze.load_bronze @base_path = N'C:\ruta\sql-data-warehouse-project\01_datasets\';
-```
+```agregar pasos de la capa silver a la guía de configuración
 
 6. Ejecutar `04_tests/quality_checks_bronze.sql` para verificar que los conteos de filas coinciden.
+
+7. Ejecutar `03_scripts/silver/ddl_silver.sql`. Crea las tablas de la capa Silver.
+
+8. Ejecutar `03_scripts/silver/proc_load_silver.sql`. Crea el procedimiento `silver.load_silver`.
+
+9. Cargar Silver desde Bronze con `EXEC silver.load_silver;`.
+
+10. Ejecutar `04_tests/quality_checks_silver.sql` para validar la limpieza.
 
 ## Nota sobre la ruta de los archivos
 
